@@ -54,33 +54,20 @@ class LoginDialog(QtWidgets.QDialog, login_ui.Ui_login_dialog):
         self.error_lbl.setText("")
 
 
-
-
 class MainWindow(QMainWindow, smith_ui.Ui_main_window):
     def __init__(self, *args):
         QMainWindow.__init__(self, *args)
         self.setupUi(self)
 
         # Setup
-        # self.screenShape = QtWidgets.QDesktopWidget().screenGeometry()
-        # self.setGeometry(0, 0, self.screenShape.width() * .7, (self.screenShape.height() - 40) * .9)
         self.setWindowTitle("Smith's Grocery")
         self.setWindowIcon(QtGui.QIcon('48x48.png'))
         self.move(QDesktopWidget().availableGeometry().center() - self.frameGeometry().center())
 
-        ## Hide widgets until log in
-        # self.tabWidget.setHidden(True)
-        # self.employee_id_lbl.setText("")
-        # self.employee_name_lbl.setText("")
-        # self.log_out_btn.setHidden(True)
-
-        self.get_employees()
+        self.get_employees() # populate employee list
         self.current_employee = None
 
         self.launch_login_dialog()
-
-        # # Reset tabs/Display according to user role
-        # self.display_tabs()
 
         # Connections
         self.log_out_btn.clicked.connect(self.launch_login_dialog)
@@ -89,6 +76,7 @@ class MainWindow(QMainWindow, smith_ui.Ui_main_window):
         # Manage Employee Initializing
         #########################################
         self.me_new_employee_b = False
+
         # Connections
         self.me_create_new_employee_btn.clicked.connect(self.handle_create_new_employee)
         self.me_delete_employee_btn.clicked.connect(self.handle_delete_employee)
@@ -103,6 +91,7 @@ class MainWindow(QMainWindow, smith_ui.Ui_main_window):
         self.temporary_product_list.append(product.Product("Orange", 2, 100, .35, 1.92, False, 0))
         self.current_product = None
         self.mp_new_product_b = False
+
         # Connections
         self.mp_search_btn.clicked.connect(self.get_product)
         self.mp_add_btn.clicked.connect(self.handle_add_new_product)
@@ -136,7 +125,6 @@ class MainWindow(QMainWindow, smith_ui.Ui_main_window):
         self.bc_cancel_btn.clicked.connect(self.cancel_transaction)
         # self.bc_weight_sbox.returnPressed.connect(self.handle_add_item)
 
-
     def launch_login_dialog(self):
         self.tabWidget.clear()
         self.employee_id_lbl.setText("")
@@ -145,20 +133,25 @@ class MainWindow(QMainWindow, smith_ui.Ui_main_window):
         self.login_dialog.exec_()
 
     def get_employees(self):
+        "Get employee list from database and read it into self.employee_list"
         print("Calling DB - Populating Employee List")
         self.employee_list = []
+
         # loop through what we get back from DB
+
+        # Temporary hardcoded-data
         self.employee_list.append(employee.Employee("Jim Smith", 1, "1", 0))
         self.employee_list.append(employee.Employee("Samantha Williams", 2, "1", 1))
 
     def display_tabs(self):
+        "Displays tabs based on user role. Admins have access to Manage Employees/Manage Products/Begin Checkout"
+        """Cashiers only have access to Begin Checkout"""
         self.tabWidget.clear()
 
         if self.current_employee.role == 0:
             self.tabWidget.insertTab(0, self.begin_checkout_tab, "Begin Checkout")
 
             self.tabWidget.insertTab(0, self.manage_products_tab, "Manage Products")
-
 
             self.tabWidget.insertTab(0, self.manage_employees_tab, "Manage Employees")
             self.populate_me_employee_list_view()
@@ -172,6 +165,7 @@ class MainWindow(QMainWindow, smith_ui.Ui_main_window):
 # Manage Employee Functions
 #########################################
     def populate_me_employee_list_view(self):
+        "Read employee list into Manage Employees List View"
         self.me_employee_list_model = QStandardItemModel(self.me_employee_listview)
 
         for employee in self.employee_list:
@@ -229,6 +223,7 @@ class MainWindow(QMainWindow, smith_ui.Ui_main_window):
 # Manage Product Functions
 #########################################
     def get_product(self):
+        "Get prodcut info from Database"
         print("Calling DB - Getting Product Info " + self.mp_barcode_search_field.text())
         for product in self.temporary_product_list:
             if self.mp_barcode_search_field.text() == str(product.barcode):
@@ -351,6 +346,7 @@ class MainWindow(QMainWindow, smith_ui.Ui_main_window):
         self.bc_checkout_frame.setHidden(True)
 
     def bc_get_product(self):
+        "Get product info from database and populate labels"
         print("Calling DB - Product Lookup")
         for product in self.temporary_product_list:
             if self.bc_barcode_search_field.text() == str(product.barcode):
@@ -385,6 +381,7 @@ class MainWindow(QMainWindow, smith_ui.Ui_main_window):
             self.bc_subtotal_lbl.setText(str(Decimal(self.bc_quantity_sbox.value() * self.current_product.customer_price).quantize(self.cents, ROUND_HALF_UP)))
 
     def handle_add_item(self):
+        "Add item to receipt and lists"
         # Store barcode, quantity/weight, price for receipt storage
         self.receipt_names.append(self.bc_barcode_lbl.text())
         if self.current_product.weigh_b:
@@ -438,10 +435,10 @@ class MainWindow(QMainWindow, smith_ui.Ui_main_window):
             print(str(self.receipt_names))
             print(str(self.receipt_quantity))
             print(str(self.receipt_price))
+
+            #UPDATE TOTALS
         except IndexError: # If no items are selected
             print("Index Error - Please select an Item")
-
-
 
 
 app = QApplication([])
