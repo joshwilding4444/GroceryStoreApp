@@ -217,6 +217,7 @@ class MainWindow(QMainWindow, smith_ui.Ui_main_window):
         self.me_id_lbl.setText(str(self.edit_employee.employee_id))
         self.me_name_field.setText(self.edit_employee.employee_name)
         self.me_password_field.setText(self.edit_employee.employee_password)
+        self.me_role_cbox.setCurrentIndex(int(self.edit_employee.role))
 
 
 #########################################
@@ -236,10 +237,10 @@ class MainWindow(QMainWindow, smith_ui.Ui_main_window):
                 self.mp_available_units_field.setText(str(product.available))
                 self.mp_price_field.setText(str(product.price))
                 self.mp_customer_price_field.setText(str(product.customer_price))
-                # if product.weigh_b:
-                #     self.weigh_rb.setChecked(True)
-                # else:
-                #     self.quantity_rb.setChecked(True)
+                if product.weigh_b:
+                    self.mp_weigh_rb.setChecked(True)
+                else:
+                    self.mp_quantity_rb.setChecked(True)
                 self.mp_provider_field.setText(str(product.provider))
                 self.mp_barcode_search_field.setText("")
 
@@ -426,6 +427,17 @@ class MainWindow(QMainWindow, smith_ui.Ui_main_window):
 
         try:
             row = self.bc_receipt_listview.selectedIndexes()[0].row()
+
+            # UPDATE TOTALS
+            self.subtotal -= Decimal(int(self.receipt_quantity[row]) * self.receipt_price[row]).quantize(self.cents, ROUND_HALF_UP)
+            self.tax -= Decimal((int(self.receipt_quantity[row]) * Decimal(self.receipt_price[row])) * self.tax_rate).quantize(self.cents, ROUND_HALF_UP)
+            self.total -= Decimal(int(self.receipt_quantity[row]) * self.receipt_price[row]).quantize(self.cents, ROUND_HALF_UP) + Decimal((int(self.receipt_quantity[row]) * Decimal(self.receipt_price[row])) * self.tax_rate).quantize(self.cents, ROUND_HALF_UP)
+
+            # Update totals labels
+            self.bc_r_subtotal_lbl.setText('$' + str(self.subtotal))
+            self.bc_tax_lbl.setText('$' + str(self.tax))
+            self.bc_total_lbl.setText('$' + str(self.total))
+
             self.bc_receipt_list_model.removeRow(row)
             self.receipt_names.pop(row)
             self.receipt_quantity.pop(row)
@@ -436,7 +448,7 @@ class MainWindow(QMainWindow, smith_ui.Ui_main_window):
             print(str(self.receipt_quantity))
             print(str(self.receipt_price))
 
-            #UPDATE TOTALS
+
         except IndexError: # If no items are selected
             print("Index Error - Please select an Item")
 
