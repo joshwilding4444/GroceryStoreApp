@@ -27,11 +27,11 @@
       <file leaf-file-name="grocery_app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/grocery_app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="273" column="13" selection-start-line="273" selection-start-column="13" selection-end-line="273" selection-end-column="13" />
+            <state relative-caret-position="3285">
+              <caret line="219" column="71" selection-start-line="219" selection-start-column="71" selection-end-line="219" selection-end-column="71" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
-                <marker date="1474999345000" expanded="true" signature="3247:3576" ph="..." />
+                <marker date="1475019328000" expanded="true" signature="2800:3129" ph="..." />
               </folding>
             </state>
           </provider>
@@ -392,7 +392,14 @@
       <option name="project" value="LOCAL" />
       <updated>1474997363816</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added comments">
+      <created>1475017461686</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1475017461686</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -404,7 +411,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2389937" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2389937" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -431,7 +438,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Lacking DB capability" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lacking DB capability" />
+    <MESSAGE value="Added comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added comments" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -444,7 +452,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
-            <marker date="1474999345000" expanded="true" signature="3247:3576" ph="..." />
+            <marker date="1475019328000" expanded="true" signature="2800:3129" ph="..." />
           </folding>
         </state>
       </provider>
@@ -542,18 +550,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/classes/employee.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/hello_world.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="21" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/classes/employee.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
           <folding />
         </state>
       </provider>
@@ -568,11 +576,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/grocery_app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="273" column="13" selection-start-line="273" selection-start-column="13" selection-end-line="273" selection-end-column="13" />
+        <state relative-caret-position="3285">
+          <caret line="219" column="71" selection-start-line="219" selection-start-column="71" selection-end-line="219" selection-end-column="71" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
-            <marker date="1474999345000" expanded="true" signature="3247:3576" ph="..." />
+            <marker date="1475019328000" expanded="true" signature="2800:3129" ph="..." />
           </folding>
         </state>
       </provider>
