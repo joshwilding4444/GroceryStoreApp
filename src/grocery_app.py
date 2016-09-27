@@ -134,6 +134,7 @@ class MainWindow(QMainWindow, smith_ui.Ui_main_window):
         # self.bc_get_payment_btn.clicked.connect()
         self.bc_receipt_listview.clicked.connect(self.enable_remove_btn)
         self.bc_cancel_btn.clicked.connect(self.cancel_transaction)
+        # self.bc_weight_sbox.returnPressed.connect(self.handle_add_item)
 
 
     def launch_login_dialog(self):
@@ -260,9 +261,10 @@ class MainWindow(QMainWindow, smith_ui.Ui_main_window):
         self.mp_customer_price_field.setText("")
         self.mp_quantity_rb.setChecked(True)
         self.mp_provider_field.setText("")
-        self.mp_current_product = product.Product(self.mp_product_gbox.setEnabled(True), self.mp_delete_btn.setEnabled(True),
-        self.mp_update_btn.setEnabled(True), self.mp_name_field.text(), self.mp_barcode_field.text(), self.mp_available_units_field.text(),
-        self.mp_price_field.text(), self.mp_customer_price_field.text(), self.mp_quantity_rb.isChecked(), self.mp_provider_field.text())
+        self.mp_current_product = product.Product(self.mp_name_field.text(), self.mp_barcode_field.text(),
+                                                  self.mp_available_units_field.text(),
+                                                  self.mp_price_field.text(), self.mp_customer_price_field.text(),
+                                                  self.mp_quantity_rb.isChecked(), self.mp_provider_field.text())
 
     def handle_update_product(self):
         "Updates employee info"
